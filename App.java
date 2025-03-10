@@ -24,13 +24,28 @@ public class App {
          * 
          */
 
-        puzzle puzzle1 = new puzzle(3,3 );
+        puzzle puzzle1 = new puzzle(3);
+        // nodeTree tree = new nodeTree(puzzle1);
+        // System.out.println(puzzle1.toString(puzzle1.currentState) + "\npossible moves: " + puzzle1.outputMoves());
+        
+        // while (!puzzle.isFinished(puzzle1)) {
+        //     try {
+                
+        //         puzzle1.move(scan.nextInt());
+        //         System.out.println(puzzle1.toString(puzzle1.currentState) + "\npossible moves: " + puzzle1.outputMoves());
+        //     } catch (Exception e) {
+        //         System.out.println("insert int please");
+        //     }
+        // }
+        
+        
 
 
 
         Long start1 = System.nanoTime();
         nodeTree puzzleAI = new nodeTree(puzzle1);
-        String s = puzzleAI.breadthFirst();
+        String s = puzzleAI.aStar();
+        System.out.println(s);
 
         Long duration = (System.nanoTime() - start1);
         System.out.println("Execution time: " + duration / 100_000_000.0 + " tenths of a second.");
@@ -53,7 +68,6 @@ public class App {
             
             try {
                 puzzle1.move(nu[i]);
-                
             } catch (Exception e) {
                 System.out.println("please insert a number!");
                 scan.nextLine();
@@ -66,38 +80,36 @@ public class App {
 
         //avg testing:
 
-    //     ArrayList<Integer> avgNodes = new ArrayList<Integer>();
-    //     ArrayList<Long> avgtime = new ArrayList<Long>();
+        // ArrayList<Integer> avgNodes = new ArrayList<Integer>();
+        // long start1 = System.currentTimeMillis();
 
-    //     for (int i = 0; i < 1000; i++) {
-    //         Long start1 = System.nanoTime();
-    //         puzzle puzzle1 = new puzzle(3, 3);
-    //         nodeTree puzzleAI = new nodeTree(puzzle1);
-    //         puzzleAI.heuristicSearch();
-    //         Long duration = (System.nanoTime() - start1);
-    //         avgtime.add(duration);
-    //         avgNodes.add(puzzleAI.nodeCount);
-    //         System.out.println("\n\n " + i + "\n\n");
-    //     }
+        // for (int i = 0; i < 1000; i++) {
+        //     puzzle puzzle1 = new puzzle(3);
+        //     nodeTree puzzleAI = new nodeTree(puzzle1);
+        //     puzzleAI.aStar();
+        //     avgNodes.add(puzzleAI.nodeCount);
+        // }
 
-    //     int total = 0;
-    //     Long totalTime = (long) 0.0;
-    //     float avg;
-    //     float avgTime;
-    //     for (int i = 0; i < avgNodes.size(); i++) {
-    //         total += avgNodes.get(i);
-    //     }
-    //     avg = total / avgNodes.size();
-    //     avgTime = totalTime / avgtime.size();
-    //     System.out.println("avg nodes: " + avg );
+        // int total = 0;
+        // long totalTime =  0;
+        // float avg;
+        // float avgTime;
+        // for (int i = 0; i < avgNodes.size(); i++) {
+        //     total += avgNodes.get(i);
+        // }
+        // avg = total / avgNodes.size();
+        // long duration = (System.currentTimeMillis() - start1);
         
+        // System.out.println("avg nodes: " + avg );
+        // System.out.println("avg time: " + duration /1000 );
         
 
-    // }
-
-    // // public static void clearScreen() {
-    // //     System.out.print("\033[H\033[2J");
-    // //     System.out.flush();
-    // }
     }
+
+    // public static void clearScreen() {
+    //     System.out.print("\033[H\033[2J");
+    //     System.out.flush();
+
+    
+
 }
