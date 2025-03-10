@@ -1,5 +1,4 @@
 # firstAIProject
 messing around with AI agents and npuzzles
-this program works by generating a random (but solveable) 8 puzzle. after this it creates a search tree where each node is a move. Currently there are two search algorithms. Breadth first searches every node, one depth at a time. this finds the fastest route but is inefficient space wise. It also implements A* wich used the manhatten heuristic to choose what states of the nPuzzle are the most promsing, and develops those first to get to an answer. I also implemented a solver, so you can watch the AI solve the 8 puzzle in real time.
 
 currently have not implemented a better search function, but I did change the 2D string array into a 1D string array. this cut down on memory signicantly. the next step is to change the representation again to be an 1D int array with the open space represented as a -1. This cuts down on the number of String.valueOf and Integer.valueOf function calls wich are inefficient compared to simple computing of grabbing ints.
