@@ -89,7 +89,15 @@ public class nodeTree {
     }
 
     //A*
+    //weighting the heuristics differently leads to different variations of A*
+    // w1 = 1; w2 = 0: Dijkstra's Algorithm. This is traditional graph search without a heuristic
+    // w1 = 0; w2 = 1: Pure Heuristic Search. This is also known as greedy best-first search. It focuses search efforts on states with low heuristic values.
+    // w1 = 1; w2 = 1: A*. This is the regular A* algorithm.
+    // w1 = 1; w2 = 10: Weighted A*. Weighted A* gives up optimality to try to find a solution more quickly.
+    // w1 = 1; w2 = 1; differential heuristic: The proceeding videos use the octile distance heuristic. This video uses the max of 10 differential heuristics at each state.
     public String aStar() {
+        int w1 = 0;
+        int w2 = 2;
         // start at root
         priorityFrontier.add(root);
 
@@ -122,7 +130,7 @@ public class nodeTree {
                     if (!existingStates.contains(getRep(plchldr))) {
                         searchTreeNode child = new searchTreeNode(plchldr, current.moves[j], current);
                         current.children.add(child);
-                        child.score = gradeState(child);
+                        child.score = gradeState(child,w1,w2);
                         existingStates.add(getRep(plchldr));
 
                     }
@@ -146,6 +154,10 @@ public class nodeTree {
         return "failed";
     }
 
+    //IDA*
+    // public String IDAStar(){
+
+    // }
     public String[] simulatedMove(int move, searchTreeNode node) {
         String[] copy = node.currentState.clone();
         // gets coords
@@ -250,7 +262,7 @@ public class nodeTree {
 
     // for A* we need to evaluate how many steps we have made and how many steps we
     // have to go
-    public int gradeState(searchTreeNode node) {
+    public int gradeState(searchTreeNode node, int w1, int w2) {
         int currY, currX;
         int goalY, goalX;
         int stepsToGo = 0;
@@ -271,7 +283,7 @@ public class nodeTree {
 
             
         }
-        return stepsToGo + stepsIn;
+        return (w2 * stepsToGo) + (w1 * stepsIn);
     }
 
     public int getStepsIteratively(searchTreeNode node) {

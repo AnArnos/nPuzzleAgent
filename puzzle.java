@@ -21,7 +21,7 @@ public class puzzle {
         this.currentState = this.initialState.clone();
         this.goalState = getGoalState(width);
         updateMoveable();
-        System.out.println(toString(currentState) + "\npossible moves: " + outputMoves());
+        // System.out.println(toString(currentState) + "\npossible moves: " + outputMoves());
     }
 
     public String outputMoves() {
@@ -184,7 +184,7 @@ public class puzzle {
                 break;
         }
         updateMoveable();
-        System.out.println(toString(currentState) + "\npossible moves: " + outputMoves());
+        // System.out.println(toString(currentState) + "\npossible moves: " + outputMoves());
     }
 
     public int checkParity(String[] puzzle) {

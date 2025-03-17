@@ -25,8 +25,8 @@ public class App {
          */
 
         puzzle puzzle1 = new puzzle(3);
-        // nodeTree tree = new nodeTree(puzzle1);
-        // System.out.println(puzzle1.toString(puzzle1.currentState) + "\npossible moves: " + puzzle1.outputMoves());
+        nodeTree tree = new nodeTree(puzzle1);
+        System.out.println(puzzle1.toString(puzzle1.currentState) + "\npossible moves: " + puzzle1.outputMoves());
         
         // while (!puzzle.isFinished(puzzle1)) {
         //     try {
@@ -64,8 +64,6 @@ public class App {
         }
 
         for (int i = 0; i < nu.length; i++) {
-            
-            
             try {
                 puzzle1.move(nu[i]);
             } catch (Exception e) {
